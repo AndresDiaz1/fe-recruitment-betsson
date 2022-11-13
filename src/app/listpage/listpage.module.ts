@@ -8,6 +8,7 @@ import { ListpageService } from './services/listpage.service';
 import { EffectsModule } from '@ngrx/effects';
 import { GetHeroesEffect } from './store/effects/getHeroes.effect';
 import { HttpClientModule } from '@angular/common/http';
+import { TableModule } from '../shared/table/table.module';
 
 const routes: Routes = [{ path: 'list', component: ListComponent }];
 
@@ -19,6 +20,7 @@ const routes: Routes = [{ path: 'list', component: ListComponent }];
     EffectsModule.forFeature([GetHeroesEffect]),
     StoreModule.forFeature('characters', reducers),
     RouterModule.forChild(routes),
+    TableModule,
   ],
   providers: [ListpageService],
 })
