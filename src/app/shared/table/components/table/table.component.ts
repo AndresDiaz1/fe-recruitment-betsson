@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { getCharactersSelector } from 'src/app/listpage/store/selectors';
 import {
   AppState,
@@ -14,11 +14,18 @@ import {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  characters$: Observable<Character[]> | null = null;
-
+  charactersSubscription: Subscription | null = null;
+  characters: Character[] = [];
+  displayedColumns: string[] = ['id', 'name'];
+  showTable = false;
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.characters$ = this.store.pipe(select(getCharactersSelector));
+    this.charactersSubscription = this.store
+      .pipe(select(getCharactersSelector))
+      .subscribe((characters: Character[]) => {
+        this.characters = characters;
+        this.showTable = true;
+      });
   }
 }
