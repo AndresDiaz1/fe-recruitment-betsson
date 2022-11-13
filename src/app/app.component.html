@@ -1,19 +1,30 @@
 <mat-drawer-container class="main-container" autosize>
   <mat-drawer #drawer class="sidenav-content" mode="over">
     <mat-nav-list class="sidenav-list">
-      <a mat-list-item [routerLink]="[link.url]" (click)="drawer.toggle()" *ngFor="let link of links"> {{ link.text }} </a>
+      <a
+        mat-list-item
+        [routerLink]="[link.url]"
+        (click)="drawer.toggle()"
+        *ngFor="let link of links"
+      >
+        {{ link.text }}
+      </a>
     </mat-nav-list>
   </mat-drawer>
 
   <div class="main-content">
     <mat-toolbar class="header-toolbar">
-      <button class="main-menu-trigger" mat-icon-button (click)="drawer.toggle()">
+      <button
+        class="main-menu-trigger"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
         <mat-icon>menu</mat-icon>
       </button>
-      <a [routerLink]="['/']"><img src="../assets/logo.png" class="main-logo" /> </a>
+      <a [routerLink]="['/']"
+        ><img src="../assets/logo.png" class="main-logo" />
+      </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
-
   </div>
-
 </mat-drawer-container>
