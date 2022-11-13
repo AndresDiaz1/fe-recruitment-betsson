@@ -1,7 +1,14 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { getCharactersSelector } from 'src/app/listpage/store/selectors';
@@ -16,7 +23,7 @@ import {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -25,7 +32,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name'];
   showTable = false;
   dataSource!: MatTableDataSource<Character>;
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.charactersSubscription = this.store
@@ -50,6 +57,11 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onRowClick(row: Character) {
+    this.router.navigate(['/hero', row.id]);
     console.log('el row', row);
+  }
+
+  ngOnDestroy(): void {
+    this.charactersSubscription?.unsubscribe();
   }
 }
