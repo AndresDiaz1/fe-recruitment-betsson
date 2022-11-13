@@ -12,3 +12,8 @@ export const getCharactersSelector = createSelector(
   heroesFeatureSelector,
   (characters): Character[] => characters.list
 );
+
+export const getCharacterById = (heroID: string) =>
+  createSelector(heroesFeatureSelector, ({ list }): Character | undefined => {
+    return list.find((c) => c.id === heroID);
+  });

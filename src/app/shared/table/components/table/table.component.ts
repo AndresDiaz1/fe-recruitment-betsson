@@ -58,7 +58,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onRowClick(row: Character) {
     this.router.navigate(['/hero', row.id]);
-    console.log('el row', row);
   }
 
   ngOnDestroy(): void {
