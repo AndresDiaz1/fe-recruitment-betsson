@@ -16,8 +16,8 @@ export class GetHeroesEffect {
   getHeroes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getHeroesAction),
-      switchMap(() => {
-        return this.listPageService.getHeroes().pipe(
+      switchMap(({ url }) => {
+        return this.listPageService.getHeroes(url).pipe(
           map((characters: CharacterState) => {
             return getHeroesSuccess(characters);
           }),

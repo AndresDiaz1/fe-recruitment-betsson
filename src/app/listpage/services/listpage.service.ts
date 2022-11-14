@@ -10,9 +10,9 @@ import { GetHeroesReponseInterface } from '../types/getHeroesResponse.interface'
 export class ListpageService {
   constructor(private http: HttpClient) {}
 
-  getHeroes(): Observable<CharacterState> {
-    const url = environment.baseUrl + '/all';
-    return this.http.get<GetHeroesReponseInterface>(url).pipe(
+  getHeroes(url: string | null): Observable<CharacterState> {
+    const fullUrl = `${environment.baseUrl}/${url ? url : 'all'}`;
+    return this.http.get<GetHeroesReponseInterface>(fullUrl).pipe(
       map((response: GetHeroesReponseInterface) => ({
         list: response.results,
       }))

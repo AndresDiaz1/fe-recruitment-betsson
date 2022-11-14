@@ -11,6 +11,6 @@ export class ListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(getHeroesAction());
+    this.store.dispatch(getHeroesAction({ url: null }));
   }
 }
