@@ -1,2 +1,1 @@
-<p>heroepage works!</p>
-{{ hero$ | async | json }}
+<app-hero-card *ngIf="hero$ | async" [hero]="hero$ | async"></app-hero-card>
