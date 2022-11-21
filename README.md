@@ -19,3 +19,5 @@ npm run build
 ```
 npm run ng serve
 ```
+
+CHECK prevInterviewTest BRANCH FOR THE OBJECTIVES
